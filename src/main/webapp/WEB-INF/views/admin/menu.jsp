@@ -32,7 +32,8 @@
 				<li><a href="${pageContext.request.contextPath}/admin/msgboard/index"><i class="icon-pencil"></i>留言管理</a></li>
 				<li><a href="${pageContext.request.contextPath}/admin/notice/index"><i class="icon-pencil"></i>公告管理</a></li>
 				<li><a href="${pageContext.request.contextPath}/admin/lesson/index"><i class="icon-pencil"></i>课程管理</a></li>	
-				<li><a href="${pageContext.request.contextPath}/admin/weather/index"><i class="icon-pencil"></i>缴费管理</a></li>	
+				<li><a href="${pageContext.request.contextPath}/admin/fee/index"><i class="icon-pencil"></i>缴费管理</a></li>	
+				<li><a href="${pageContext.request.contextPath}/admin/score/index"><i class="icon-pencil"></i>成绩管理</a></li>	
 				
 				<%-- <c:if test="${sessionScope.adminuser.username=='admin'}">
 						<li><a href="${pageContext.request.contextPath}/admin/user/index"><i class="icon-pencil"></i> 商户管理</a></li>
