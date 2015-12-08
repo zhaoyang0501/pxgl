@@ -14,9 +14,13 @@
       <!-- 
                 <li ><a href="${pageContext.request.contextPath}/friend">我的好友</a></li>
                  -->
-                <li><a href="${pageContext.request.contextPath}/weather">大气查询</a></li>
+                <li><a href="${pageContext.request.contextPath}/score">成绩查询</a></li>
+                 <li><a href="${pageContext.request.contextPath}/fee">缴费查询</a></li>
+                 <li><a href="${pageContext.request.contextPath}/weather">公告</a></li>
+                 <li><a href="${pageContext.request.contextPath}/weather">课程安排</a></li>
+                 <li><a href="${pageContext.request.contextPath}/msgbox">留言讨论</a></li>
                 <li><a href="${pageContext.request.contextPath}/register">注册</a></li>
-                <li><a href="${pageContext.request.contextPath}/msgbox">留言讨论</a></li>
+             
                <li><a href= "${pageContext.request.contextPath}/about">关于</a></li>
       </ul>
       

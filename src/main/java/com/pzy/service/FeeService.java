@@ -17,6 +17,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.pzy.entity.Fee;
+import com.pzy.entity.User;
 import com.pzy.repository.FeeRepository;
 
 @Service
@@ -26,7 +27,21 @@ public class FeeService {
 	public List<Fee> findAll() {
 		return (List<Fee>) feeRepository.findAll(new Sort(Direction.DESC, "id"));
 	}
-
+	public List<Fee> findAll(final String year,final User user) {
+		Specification<Fee> spec = new Specification<Fee>() {
+			public Predicate toPredicate(Root<Fee> root,CriteriaQuery<?> query, CriteriaBuilder cb) {
+				Predicate predicate = cb.conjunction();
+				if (year != null) {
+					predicate.getExpressions().add(cb.like(root.get("year").as(String.class), "%"+ year + "%"));
+				}
+				if (user != null) {
+					predicate.getExpressions().add(cb.equal(root.get("user").as(User.class),user));
+				}
+				return predicate;
+			}
+		};
+		return feeRepository.findAll(spec);
+	}
 	public Page<Fee> findAll(final int pageNumber, final int pageSize,
 			final String name) {
 		PageRequest pageRequest = new PageRequest(pageNumber - 1, pageSize,

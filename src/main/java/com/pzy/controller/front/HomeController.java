@@ -19,13 +19,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.pzy.entity.Fee;
+import com.pzy.entity.Lesson;
 import com.pzy.entity.MsgBoard;
 import com.pzy.entity.Notice;
+import com.pzy.entity.Score;
 import com.pzy.entity.User;
 import com.pzy.entity.Weather;
 import com.pzy.service.CityService;
+import com.pzy.service.FeeService;
+import com.pzy.service.LessonService;
 import com.pzy.service.MsgBoardService;
 import com.pzy.service.NoticeService;
+import com.pzy.service.ScoreService;
 import com.pzy.service.UserService;
 import com.pzy.service.WeatherService;
 /***
@@ -40,6 +46,12 @@ public class HomeController {
 	private UserService userService;
 	@Autowired
 	private NoticeService noticeService;
+	@Autowired
+	private LessonService lessonService;
+	@Autowired
+	private FeeService feeService;
+	@Autowired
+	private ScoreService scoreService;
 	@Autowired
 	private MsgBoardService msgBoardService;
 	@Autowired
@@ -57,6 +69,36 @@ public class HomeController {
 	@RequestMapping("about")
 	public String about() {
 		return "about";
+	}
+	
+	@RequestMapping("score")
+	public String score(Model model) {
+		model.addAttribute("lessons", lessonService.findAll());
+		return "score";
+	}
+	
+	@RequestMapping(value = "score" ,method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> score(Long lessonid, Model model,HttpSession httpSession) throws ParseException {
+		Lesson lesson=null;
+		if(lessonid!=null)
+			lesson=lessonService.find(lessonid);
+		List<Score> scores=scoreService.findAll(lesson,(User)httpSession.getAttribute("user"));
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("scores", scores);
+		return map;
+	}
+	@RequestMapping("fee")
+	public String fee(Model model) {
+		return "fee";
+	}
+	@RequestMapping(value = "fee" ,method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> fee(String year, Model model,HttpSession httpSession) throws ParseException {
+		List<Fee> scores=feeService.findAll(year,(User)httpSession.getAttribute("user"));
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("fees", scores);
+		return map;
 	}
 	/***
 	 * 大气查询
