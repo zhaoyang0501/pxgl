@@ -1,19 +1,24 @@
 package com.pzy.controller.front;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +28,7 @@ import com.pzy.entity.Fee;
 import com.pzy.entity.Lesson;
 import com.pzy.entity.MsgBoard;
 import com.pzy.entity.Notice;
+import com.pzy.entity.Plan;
 import com.pzy.entity.Score;
 import com.pzy.entity.User;
 import com.pzy.entity.Weather;
@@ -31,6 +37,7 @@ import com.pzy.service.FeeService;
 import com.pzy.service.LessonService;
 import com.pzy.service.MsgBoardService;
 import com.pzy.service.NoticeService;
+import com.pzy.service.PlanService;
 import com.pzy.service.ScoreService;
 import com.pzy.service.UserService;
 import com.pzy.service.WeatherService;
@@ -53,11 +60,19 @@ public class HomeController {
 	@Autowired
 	private ScoreService scoreService;
 	@Autowired
+	private PlanService planService;
+	@Autowired
 	private MsgBoardService msgBoardService;
 	@Autowired
 	private CityService cityService;
 	@Autowired
 	private WeatherService weatherService;
+	@InitBinder  
+	protected void initBinder(HttpServletRequest request,  
+	            ServletRequestDataBinder binder) throws Exception {   
+	      binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true));  
+	}  
+	
 	@RequestMapping("index")
 	public String index() {
 		return "weather";
@@ -109,53 +124,15 @@ public class HomeController {
 	public String plan(Model model) {
 		return "plan";
 	}
-	/***
-	 * 大气查询
-	 * @return
-	 */
-	@RequestMapping(value = "weather" ,method = RequestMethod.GET)
-	public String weather(Model model) {
-		model.addAttribute("citys", cityService.findAll());
-		return "weather";
-	}
-	/***
-	 * 大气查询
-	 * @return
-	 * @throws ParseException 
-	 */
-	
-	@RequestMapping(value = "weather" ,method = RequestMethod.POST)
+	@RequestMapping(value = "plan" ,method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> weather(Integer cityid,String start,String end, Model model) throws ParseException {
-		Date b=StringUtils.isBlank(start)?null:DateUtils.parseDate(start, "yyyy-MM-dd");
-		Date e=StringUtils.isBlank(end)?null:DateUtils.parseDate(end, "yyyy-MM-dd");
-		List<Weather> weathers=weatherService.findAll(b, e, cityid);
-		List<String> dates=new ArrayList<String>();
-		List<Double> tmpmax=new ArrayList<Double>();
-		List<Double> tmpmin=new ArrayList<Double>();
-		List<Double> aqi=new ArrayList<Double>();
-		List<Double> pm25=new ArrayList<Double>();
-		List<Double> sd=new ArrayList<Double>();
-		
-		for(Weather bean:weathers){
-			dates.add(DateFormatUtils.format(bean.getNowDate(), "yyyy-MM-dd"));
-			tmpmax.add(bean.getTemmax());
-			tmpmin.add(bean.getTemmin());
-			aqi.add(bean.getAqi());
-			pm25.add(bean.getAqi());
-			sd.add(bean.getSd());
-		}
-		
+	public Map<String,Object> plan(Date start,Date end, Model model,HttpSession httpSession) throws ParseException {
+		List<Plan> plans=planService.findAll(start,end);
 		Map<String,Object> map=new HashMap<String,Object>();
-		map.put("dates", dates);
-		map.put("tmpmax", tmpmax);
-		map.put("tmpmin", tmpmin);
-		map.put("sd", sd);
-		map.put("aqi", aqi);
-		map.put("pm25", pm25);
-		map.put("weathers", weathers);
+		map.put("plans", plans);
 		return map;
 	}
+	
 	/***
 	 * 查看留言板
 	 * @param model
@@ -222,7 +199,7 @@ public class HomeController {
 		}else{
 			httpSession.setAttribute("user", user);
 			model.addAttribute("citys", cityService.findAll());
-			return "weather";
+			return "notice";
 		}
 	}
 	/***
@@ -234,7 +211,7 @@ public class HomeController {
 	@RequestMapping(value = "loginout",method = RequestMethod.GET)
 	public String loginout(HttpSession httpSession, Model model) {
 		httpSession.removeAttribute("user");
-		return "weather";
+		return "notice";
 	}
 	
 	@ModelAttribute

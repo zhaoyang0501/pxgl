@@ -44,26 +44,20 @@ $.ace.setContextPath('${pageContext.request.contextPath}');
 function fun_query(){
 	$.ajax({
 		type : "POST",
-		url : $.ace.getContextPath() + "/fee",
+		url : $.ace.getContextPath() + "/plan",
 		data:{
-			"lessonid":$("#lessonid").val()
+			"start":$("#start").val(),
+			"end":$("#end").val()
 		},
 		success : function(json) {
 			$("#table").html("");
-			for(i=0;i<json.fees.length;i++){
+			for(i=0;i<json.plans.length;i++){
 				$("#table").append("<tr>"+
-			 			"<td>"+json.fees[i].user.name+"</td>"+
-		 				"<td>"+json.fees[i].year+"</td>"+
-		 				"<td>"+json.fees[i].needa+"</td>"+
-		 				"<td>"+json.fees[i].reala+"</td>"+
-		 				"<td>"+json.fees[i].resta+"</td>"+
-		 				"<td>"+json.fees[i].needb+"</td>"+
-		 				"<td>"+json.fees[i].realb+"</td>"+
-		 				"<td>"+json.fees[i].restb+"</td>"+
-		 				"<td>"+json.fees[i].needc+"</td>"+
-		 				"<td>"+json.fees[i].realc+"</td>"+
-		 				"<td>"+json.fees[i].restc+"</td>"+
-		 				"<td><span class='label label-success'>"+json.fees[i].state+"</span></td>"+
+			 			"<td>"+json.plans[i].date+"</td>"+
+		 				"<td>"+json.plans[i].lesson.name+"</td>"+
+		 				"<td>"+json.plans[i].start+"</td>"+
+		 				"<td>"+json.plans[i].end+"</td>"+
+		 				"<td><span class='label label-success'>"+json.plans[i].hours+"</span></td>"+
 		 		"</tr>");
 			}
 		}

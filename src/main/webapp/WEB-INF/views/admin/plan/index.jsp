@@ -74,6 +74,7 @@
 											<th >上课时间</th>
 											<th >下课时间</th>
 											<th >课程</th>
+											<th >课时</th>
 											<th >操作</th>
 										</tr>
 									</thead>
@@ -124,7 +125,12 @@
 								<input size="16" name='end' type="text" value="" readonly class="datetime">
 								</div>
 							</div>
-						
+						<div class="control-group">
+								<label for="title" class="control-label">课时：</label>
+								<div class="controls">
+								<input size="16" name='hours' type="text" value="" >
+								</div>
+							</div>
 						</form>
 					</div>
 				</div>

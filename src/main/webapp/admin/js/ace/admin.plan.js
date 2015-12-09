@@ -59,11 +59,13 @@ jQuery.adminPlan = {
 					},{
 						"mDataProp" : "lesson.name"
 					},{
+						"mDataProp" : "hours"
+					},{
 						"mDataProp" : ""
 					}],
 					"aoColumnDefs" : [
 						{
-							'aTargets' : [5],
+							'aTargets' : [6],
 							'fnRender' : function(oObj, sVal) {
 								return"  <button class=\"btn2 btn-info\" onclick=\"$.adminPlan.deletePlan("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button>";
 							}

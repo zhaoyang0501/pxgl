@@ -24,6 +24,13 @@ public class Plan {
 	private Date end;
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Lesson lesson;
+	private Double hours;
+	public Double getHours() {
+		return hours;
+	}
+	public void setHours(Double hours) {
+		this.hours = hours;
+	}
 	public Long getId() {
 		return id;
 	}

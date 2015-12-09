@@ -24,6 +24,23 @@ public class PlanService {
 	public List<Plan> findAll() {
 		return (List<Plan>) planRepository.findAll(new Sort(Direction.DESC, "createDate"));
 	}
+	public List<Plan> findAll(final Date start,final Date end) {
+		Specification<Plan> spec = new Specification<Plan>() {
+			public Predicate toPredicate(Root<Plan> root,CriteriaQuery<?> query, CriteriaBuilder cb) {
+				Predicate predicate = cb.conjunction();
+				if (start != null) {
+					predicate.getExpressions().add(
+							cb.greaterThan(root.get("date").as(Date.class), start));
+				}
+				if (end != null) {
+					predicate.getExpressions().add(
+							cb.lessThan(root.get("date").as(Date.class), end));
+				}
+				return predicate;
+			}
+		};
+		return planRepository.findAll(spec);
+	}
 
 	public Page<Plan> findAll(final int pageNumber, final int pageSize,
 			final String name) {
