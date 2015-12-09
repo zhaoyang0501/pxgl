@@ -34,6 +34,7 @@
 				<li><a href="${pageContext.request.contextPath}/admin/lesson/index"><i class="icon-pencil"></i>课程管理</a></li>	
 				<li><a href="${pageContext.request.contextPath}/admin/fee/index"><i class="icon-pencil"></i>缴费管理</a></li>	
 				<li><a href="${pageContext.request.contextPath}/admin/score/index"><i class="icon-pencil"></i>成绩管理</a></li>	
+				<li><a href="${pageContext.request.contextPath}/admin/plan/index"><i class="icon-pencil"></i>课程安排</a></li>	
 				
 				<%-- <c:if test="${sessionScope.adminuser.username=='admin'}">
 						<li><a href="${pageContext.request.contextPath}/admin/user/index"><i class="icon-pencil"></i> 商户管理</a></li>

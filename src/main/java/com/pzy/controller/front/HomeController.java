@@ -92,6 +92,11 @@ public class HomeController {
 	public String fee(Model model) {
 		return "fee";
 	}
+	@RequestMapping("notice")
+	public String notice(Model model) {
+		model.addAttribute("notices", noticeService.findAll());
+		return "notice";
+	}
 	@RequestMapping(value = "fee" ,method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> fee(String year, Model model,HttpSession httpSession) throws ParseException {
@@ -99,6 +104,10 @@ public class HomeController {
 		Map<String,Object> map=new HashMap<String,Object>();
 		map.put("fees", scores);
 		return map;
+	}
+	@RequestMapping("plan")
+	public String plan(Model model) {
+		return "plan";
 	}
 	/***
 	 * 大气查询
