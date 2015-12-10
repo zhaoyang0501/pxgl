@@ -42,7 +42,7 @@ public class IndexController {
 		
 		Teacher user=tercherService.login(userName, password);
     	if("admin".equals(userName)&&"123456".equals(password)){
-    		User admin=new User(); 
+    		User admin=new User();  
     		admin.setUsername("admin");
     		admin.setPassword("123456");
     		admin.setName("超级管理员");
