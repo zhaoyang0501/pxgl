@@ -116,6 +116,7 @@ function fun_query(){
 											<th>课程</th>
 											<th>上课时间</th>
 											<th>下课时间</th>
+												<th>课时</th>
 										</tr>
 									</thead>
    <tbody  id="table"></tbody>
