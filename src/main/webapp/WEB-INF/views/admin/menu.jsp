@@ -26,8 +26,24 @@
 		<div class="left-secondary-nav tab-content" >
 			<div class="tab-pane active dailyreport" id="dailyreport">
 				<ul id="nav" class="accordion-nav" >
+				<c:if test="${sessionScope.adminuser.username=='admin'}">
+					<li><a href="${pageContext.request.contextPath}/admin/user/index"><i class="icon-pencil"></i>学生管理</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/teacher/index"><i class="icon-pencil"></i>教师管理</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/msgboard/index"><i class="icon-pencil"></i>留言管理</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/notice/index"><i class="icon-pencil"></i>公告管理</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/fee/index"><i class="icon-pencil"></i>缴费管理</a></li>	
+					<li><a href="${pageContext.request.contextPath}/admin/lesson/index"><i class="icon-pencil"></i>课程管理</a></li>	
+				</c:if>
+				<c:if test="${sessionScope.adminuser.username!='admin'}">
+						<li><a href="${pageContext.request.contextPath}/admin/plan/index"><i class="icon-pencil"></i>课程安排</a></li>	
+						<li><a href="${pageContext.request.contextPath}/admin/score/index"><i class="icon-pencil"></i>成绩管理</a></li>	
+						<li><a href="${pageContext.request.contextPath}/admin/msgboardview/index"><i class="icon-pencil"></i>留言查看</a></li>
+						<li><a href="${pageContext.request.contextPath}/admin/noticeview/index"><i class="icon-pencil"></i>公告查看</a></li>
+						<li><a href="${pageContext.request.contextPath}/admin/userview/index"><i class="icon-pencil"></i>学生查询</a></li>
+			
+				</c:if>
+				<!--  
 				<li><a href="${pageContext.request.contextPath}/admin/user/index"><i class="icon-pencil"></i>学生管理</a></li>
-				
 				<li><a href="${pageContext.request.contextPath}/admin/teacher/index"><i class="icon-pencil"></i>教师管理</a></li>
 				<li><a href="${pageContext.request.contextPath}/admin/msgboard/index"><i class="icon-pencil"></i>留言管理</a></li>
 				<li><a href="${pageContext.request.contextPath}/admin/notice/index"><i class="icon-pencil"></i>公告管理</a></li>
@@ -35,7 +51,7 @@
 				<li><a href="${pageContext.request.contextPath}/admin/fee/index"><i class="icon-pencil"></i>缴费管理</a></li>	
 				<li><a href="${pageContext.request.contextPath}/admin/score/index"><i class="icon-pencil"></i>成绩管理</a></li>	
 				<li><a href="${pageContext.request.contextPath}/admin/plan/index"><i class="icon-pencil"></i>课程安排</a></li>	
-				
+				-->
 				<%-- <c:if test="${sessionScope.adminuser.username=='admin'}">
 						<li><a href="${pageContext.request.contextPath}/admin/user/index"><i class="icon-pencil"></i> 商户管理</a></li>
 						<li><a href="${pageContext.request.contextPath}/admin/contract/index"><i class="icon-pencil"></i> 合同管理</a></li>

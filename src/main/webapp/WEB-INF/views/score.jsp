@@ -41,35 +41,6 @@
 		<![endif]-->
 <script type="text/javascript">
 $.ace.setContextPath('${pageContext.request.contextPath}');
-	function fun_maptype(type){
-		if(type=="晴"){
-		return "d00.gif";
-		}
-		if(type=="多云"){
-		return "d01.gif";
-		}
-		if(type=="阴"){
-			return "d02.gif";
-		}
-		if(type=="小雨"){
-			return "d03.gif";
-		}
-		if(type=="中雨"){
-			return "d04.gif";
-		}
-		if(type=="大雨"){
-			return "d05.gif";
-		}
-		if(type=="小雪"){
-			return "d14.gif";
-		}
-		if(type=="中雪"){
-			return "d15.gif";
-		}
-		if(type=="大雪"){
-			return "d16.gif";
-		}
-	}
 	function fun_query(){
 		$.ajax({
 			type : "POST",
@@ -133,7 +104,7 @@ $.ace.setContextPath('${pageContext.request.contextPath}');
   <div class="container main">
    <table class="table">
    <thead>
-   <tr> <th>学生</th> <th>年份</th><th>课程</th><th>总分</th><th>得分</th></th> 
+   <tr> <th>学生</th> <th>年份</th><th>课程</th><th>总分</th><th>得分</th></tr> 
    </thead>
    <tbody  id="table"></tbody>
    <tbody>

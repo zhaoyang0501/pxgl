@@ -51,7 +51,7 @@ jQuery.adminTeacher = {
 					"aoColumns" : [ {
 						"mDataProp" : "id"
 					}, {
-						"mDataProp" : "teachername"
+						"mDataProp" : "username"
 					}, {
 						"mDataProp" : "password"
 					}, {
@@ -124,7 +124,7 @@ jQuery.adminTeacher = {
     			success : function(json) {
     				if(json.state=='success'){
     					$("#name").val(json.object.name);
-    					$("#teachername").val(json.object.teachername);
+    					$("#username").val(json.object.username);
     					$("#password").val(json.object.password);
     					$("#tel").val(json.object.tel);
     					$("#email").val(json.object.email);

@@ -4,7 +4,7 @@
 <html lang="ch">
 <%@ include file="../common/meta.jsp"%>
 <head>
-<script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/ace/admin.teacher.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/ace/admin.noticeview.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/falgun/bootbox.js"></script>
 <script src="${pageContext.request.contextPath}/admin/js/falgun/bootstrap-datetimepicker.min.js"></script>
 <script src="${pageContext.request.contextPath}/admin/js/falgun/bootstrap-datetimepicker.zh-CN.js"></script>
@@ -39,31 +39,23 @@
 					<div class="span12">
 						<div class="content-widgets light-gray">
 							<div class="widget-head  bondi-blue" >
-								<h3>教师管理</h3>
+								<h3>公告查询</h3>
 							</div>
 							<div class="box well form-inline">
-								<span>教师名称：</span>
+								<span>标题：</span>
 								<input type="text" id="_name" >
-								<a onclick="$.adminTeacher.initSearchDataTable()"
+								<a onclick="$.adminNoticeview.initSearchDataTable()"
 									class="btn btn-info" data-loading-text="正在加载..."><i class="icon-search"></i>查询</a>
 							</div>
 							<div class="widget-container">
-								
-									<a class="btn btn-success" style="float: right; margin: 5px;" onclick="$.adminTeacher.showTeacherAddModal()"><i class="icon-plus"></i>新增</a>
 								<table class="responsive table table-striped table-bordered"
 									id="dt_table_view">
 									<thead>
 										<tr>
-											<th >ID</th>
-											<th >用户名</th>
-											<th >密码</th>
-											<th >姓名</th>
-											<th >地址</th>
-											<th >电话</th>
-											<th >邮件</th>
-											<th >职称</th>
-											<th >加入日期</th>
-											<th >操作</th>
+											<th >流水号</th>
+											<th >标题</th>
+											<th >内容</th>
+											<th >留言日期</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -92,49 +84,18 @@
 							<input type="hidden"  name='id' id="id" value="">
 							
 							<div class="control-group">
-								<label for="title" class="control-label">用户名：</label>
-								<div class="controls">
-									<input type="text" name='username' id="username" placeholder="">
-								</div>
-							</div>
-							<div class="control-group">
-								<label for="title" class="control-label">密码：</label>
-								<div class="controls">
-									<input type="text"  name='password' id="password" placeholder="">
-								</div>
-							</div>
-							<div class="control-group">
-								<label for="title" class="control-label">姓名：</label>
+								<label for="title" class="control-label">标题：</label>
 								<div class="controls">
 									<input type="text" name='name' id="name" placeholder="">
 								</div>
 							</div>
-							
 							<div class="control-group">
-								<label for="title" class="control-label">地址：</label>
+								<label for="title" class="control-label">内容：</label>
 								<div class="controls">
-									<input type="text" name='address' id=address placeholder="">
+									<textarea rows="4" cols="" name='context' id="context"></textarea>
 								</div>
 							</div>
-							<div class="control-group">
-								<label for="title" class="control-label">email：</label>
-								<div class="controls">
-									<input type="text" name='email' id=email placeholder="">
-								</div>
-							</div>
-							
-							<div class="control-group">
-								<label for="title" class="control-label">电话：</label>
-								<div class="controls">
-									<input type="text" name='tel' id=tel placeholder="">
-								</div>
-							</div>
-							<div class="control-group">
-								<label for="title" class="control-label">职称：</label>
-								<div class="controls">
-									<input type="text" name='job' id=job placeholder="">
-								</div>
-							</div>
+						
 						</form>
 					</div>
 				</div>
@@ -142,7 +103,7 @@
 		</div>
 		
 		<div class="modal-footer center" id="div_footer">
-			<a class="btn btn-primary" onclick="$.adminTeacher.saveTeacher()">保存</a>
+			<a class="btn btn-primary" onclick="$.adminNotice.saveNotice()">保存</a>
 			<a href="#" class="btn" data-dismiss="modal" id="closeViewModal">关闭</a>
 		</div>
 	</div>

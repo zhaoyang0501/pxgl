@@ -4,7 +4,7 @@
 <html lang="ch">
 <%@ include file="../common/meta.jsp"%>
 <head>
-<script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/ace/admin.teacher.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/ace/admin.msgboardview.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/falgun/bootbox.js"></script>
 <script src="${pageContext.request.contextPath}/admin/js/falgun/bootstrap-datetimepicker.min.js"></script>
 <script src="${pageContext.request.contextPath}/admin/js/falgun/bootstrap-datetimepicker.zh-CN.js"></script>
@@ -39,31 +39,23 @@
 					<div class="span12">
 						<div class="content-widgets light-gray">
 							<div class="widget-head  bondi-blue" >
-								<h3>教师管理</h3>
+								<h3>留言查看</h3>
 							</div>
 							<div class="box well form-inline">
-								<span>教师名称：</span>
+								<span>内容：</span>
 								<input type="text" id="_name" >
-								<a onclick="$.adminTeacher.initSearchDataTable()"
+								<a onclick="$.adminMsgboardview.initSearchDataTable()"
 									class="btn btn-info" data-loading-text="正在加载..."><i class="icon-search"></i>查询</a>
 							</div>
 							<div class="widget-container">
-								
-									<a class="btn btn-success" style="float: right; margin: 5px;" onclick="$.adminTeacher.showTeacherAddModal()"><i class="icon-plus"></i>新增</a>
 								<table class="responsive table table-striped table-bordered"
 									id="dt_table_view">
 									<thead>
 										<tr>
-											<th >ID</th>
-											<th >用户名</th>
-											<th >密码</th>
-											<th >姓名</th>
-											<th >地址</th>
-											<th >电话</th>
-											<th >邮件</th>
-											<th >职称</th>
-											<th >加入日期</th>
-											<th >操作</th>
+											<th >流水号</th>
+											<th >留言人</th>
+											<th >留言内容</th>
+											<th >留言日期</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -84,7 +76,7 @@
 			<button type="button" class="close" data-dismiss="modal">×</button>
 			<label id="_modal_header_label"></label>
 		</div>
-		<div class="modal-body" style="min-height: 400px;">
+		<div class="modal-body" >
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="form-container grid-form form-background left-align form-horizontal">
@@ -94,7 +86,7 @@
 							<div class="control-group">
 								<label for="title" class="control-label">用户名：</label>
 								<div class="controls">
-									<input type="text" name='username' id="username" placeholder="">
+									<input type="text" name='msgboardname' id="msgboardname" placeholder="">
 								</div>
 							</div>
 							<div class="control-group">
@@ -129,12 +121,6 @@
 									<input type="text" name='tel' id=tel placeholder="">
 								</div>
 							</div>
-							<div class="control-group">
-								<label for="title" class="control-label">职称：</label>
-								<div class="controls">
-									<input type="text" name='job' id=job placeholder="">
-								</div>
-							</div>
 						</form>
 					</div>
 				</div>
@@ -142,7 +128,7 @@
 		</div>
 		
 		<div class="modal-footer center" id="div_footer">
-			<a class="btn btn-primary" onclick="$.adminTeacher.saveTeacher()">保存</a>
+			<a class="btn btn-primary" onclick="$.adminMsgboard.saveMsgboard()">保存</a>
 			<a href="#" class="btn" data-dismiss="modal" id="closeViewModal">关闭</a>
 		</div>
 	</div>

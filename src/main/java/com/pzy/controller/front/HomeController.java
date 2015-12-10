@@ -74,8 +74,9 @@ public class HomeController {
 	}  
 	
 	@RequestMapping("index")
-	public String index() {
-		return "weather";
+	public String index(Model model) {
+		model.addAttribute("notices", noticeService.findAll());
+		return "notice";
 	}
 	/***
 	 * 关于

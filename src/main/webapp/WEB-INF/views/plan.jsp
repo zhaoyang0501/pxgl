@@ -74,12 +74,6 @@ function fun_query(){
 			  $(this).tab('show');
 			  fun_query();
 		});
-		
-		  // 基于准备好的dom，初始化echarts图表
-       
-		
-			
-			
 	});
 </script>
 	</head>
